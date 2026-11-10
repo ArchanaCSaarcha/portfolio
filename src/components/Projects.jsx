@@ -27,6 +27,18 @@ export default function Projects() {
       imageAlt: 'Screenshot of Habit Tracker welcome screen showing Small habits, Big changes with an input field and Start Tracking button',
       highlightBadge: 'Interactive Web App',
     },
+    {
+      title: 'Blog Application',
+      technologies: ['React.js', 'Vite', 'JavaScript', 'Tailwind CSS', 'React Router DOM', 'Redux Toolkit', 'Context API', 'HTML5'],
+      techString: 'React.js, Vite, JavaScript, Tailwind CSS, React Router DOM, Redux Toolkit, Context API, and HTML5',
+      description:
+        'A simple, responsive blog application for creating, viewing, editing, and deleting posts. Includes title search and category filtering to help readers find posts.',
+      githubUrl: 'https://github.com/ArchanaCSaarcha/blog-app',
+      image: null,
+      imageAlt: '',
+      highlightBadge: 'Frontend Web Application',
+      projectDetails: ['React state storage', 'Responsive interface', 'CRUD, search, and category filters'],
+    },
   ];
 
   return (
@@ -65,24 +77,39 @@ export default function Projects() {
                   idx % 2 === 1 ? 'lg:order-2 lg:border-l lg:border-charcoal-800' : 'lg:border-r lg:border-charcoal-800'
                 }`}
               >
-                <div
-                  className="relative w-full rounded-2xl overflow-hidden border border-charcoal-800 shadow-md group-hover:border-sage-500/30 transition-all cursor-zoom-in"
-                  onClick={() => setSelectedImage(project)}
-                  title="Click to view full screenshot"
-                >
-                  <img
-                    src={project.image}
-                    alt={project.imageAlt}
-                    className="w-full h-64 sm:h-72 lg:h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  
-                  {/* Subtle click to zoom badge */}
-                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-charcoal-950/80 backdrop-blur-md text-[11px] font-mono text-slate-300 border border-charcoal-700/80 pointer-events-none flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sage-400" />
-                    <span>View screenshot</span>
+                {project.image ? (
+                  <div
+                    className="relative w-full rounded-2xl overflow-hidden border border-charcoal-800 shadow-md group-hover:border-sage-500/30 transition-all cursor-zoom-in"
+                    onClick={() => setSelectedImage(project)}
+                    title="Click to view full screenshot"
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      className="w-full h-64 sm:h-72 lg:h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-charcoal-950/80 backdrop-blur-md text-[11px] font-mono text-slate-300 border border-charcoal-700/80 pointer-events-none flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+                      <span>View screenshot</span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="w-full min-h-64 sm:min-h-72 lg:min-h-80 rounded-2xl border border-charcoal-800 bg-gradient-to-br from-charcoal-900 via-charcoal-950 to-sage-950/50 p-6 sm:p-8 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                      <span>PROJECT PREVIEW</span><span>01 / BLOG</span>
+                    </div>
+                    <div className="py-8">
+                      <p className="text-sm font-mono text-sage-400">Your space for ideas</p>
+                      <h3 className="mt-2 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">The Daily<span className="text-sage-400">.</span></h3>
+                      <p className="mt-3 text-sm text-slate-300">Stories, notes, and fresh perspectives.</p>
+                    </div>
+                    <div className="flex gap-2 text-xs font-mono text-slate-300">
+                      <span className="px-3 py-1.5 rounded-full bg-charcoal-800 border border-charcoal-700">Search posts</span>
+                      <span className="px-3 py-1.5 rounded-full bg-charcoal-800 border border-charcoal-700">Categories</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Project Content Column */}
@@ -121,6 +148,15 @@ export default function Projects() {
                   <p className="mt-6 text-sm sm:text-base text-slate-300 leading-relaxed">
                     {project.description}
                   </p>
+                  {project.projectDetails && (
+                    <ul className="mt-4 flex flex-wrap gap-2" aria-label="Project features and storage">
+                      {project.projectDetails.map((detail) => (
+                        <li key={detail} className="px-2.5 py-1 rounded-lg text-xs font-mono bg-charcoal-900 text-sage-300 border border-charcoal-700">
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 {/* Project Links / Buttons */}
